@@ -11,12 +11,18 @@ convert Flowchart \ Activity-Diagram into Pseudo-Code.
 ### output
 
 ```python
-def twoSum(nums , target) :
-    n = len(nums)
-    for i in range (n) :
-        for j in range (i + 1,n) :
-            if nums [i]+ nums [j] == target:
-                return [i , j]
+def twoSum(self, nums , target) :
+    Set n to the length of the array num.
+    Set i as the index of the array, the initial value is 0
+    if(I is less than n?):
+        Define j as the index of the array, \
+        and the initial value of j is i+1
+        if(J is less than n?) :
+            if (The sum of nums[i] and nums[j] is \
+                equal to the target):
+                Return their array indices
+            Increment j
+        Increment i
     return []
 ```
 
