@@ -29,7 +29,7 @@ def twoSum(self, nums , target) :
 ## Usage
 ```cpp
 AvtivityCodeGen cg;
-cg.FC2Pseudocode(inputTxtPath, outTxtPath);
+cg.FC2Pseudocode(inputTxtPath, outputTxtPath);
 ```
 
 ## Reference
