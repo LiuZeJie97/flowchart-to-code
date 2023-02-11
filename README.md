@@ -36,4 +36,4 @@ int main()
 ```
 
 ## Reference
-The method was proposed in the paper [程序流程图到代码的自动生成算法](https://journal.xidian.edu.cn/xdxb/CN/abstract/abstract11616.shtml#1.), and implemented in the paper ["Code Generation From Flowcharts with Texts: A Benchmark Dataset and An Approach"](https://aclanthology.org/D18-2002/)
+The method was proposed in the paper [程序流程图到代码的自动生成算法](https://journal.xidian.edu.cn/xdxb/CN/abstract/abstract11616.shtml#1.), and implemented in the paper ["Code Generation From Flowcharts with Texts: A Benchmark Dataset and An Approach"](https://aclanthology.org/2022.findings-emnlp.449/)
