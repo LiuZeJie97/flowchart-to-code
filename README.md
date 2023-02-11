@@ -26,8 +26,13 @@ def twoSum(self, nums, target):
 
 ## Usage
 ```cpp
-AvtivityCodeGen cg;
-cg.FC2Pseudocode(inputTxtPath, outputTxtPath);
+#include "AvtivityCodeGen.h"
+
+int main()
+{
+	AvtivityCodeGen cg;
+	cg.FC2Pseudocode("examples\\input.txt", "examples\\output.txt");
+}
 ```
 
 ## Reference
