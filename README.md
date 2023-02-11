@@ -2,7 +2,7 @@
 
 Convert Flowchart into Pseudo-Code. This code can:
 - Generate code containing BREAK, CONTINUE, RETURN, WHILE, DOWHILE, IF, ELIF.
-- Support complex flowcharts, such as the selection nodes with more than 2 outgoing edges. 
+- Support complex flowcharts, such as the Condition nodes with more than 2 outgoing edges. 
 
 <!---
 Flowcharts are special case of activity diagrams. The model will  converts the flowchart into an activity diagram when generating the code.
@@ -92,7 +92,7 @@ int main()
 Flowchart is a combination of two basic structures: selection and loop. 
 [Wang et al.](https://journal.xidian.edu.cn/xdxb/CN/abstract/abstract11616.shtml#1.) found that the flowchart can be seen as a directed graph, in which each loop forms a strongly connected sub-graph. They used this method to find all the loop structures in the flowchart. Then, the structures led by the remaining Condition nodes are selection structures. 
 
-- Step 2: Identify the nodes (e.g. while) and edges (e.g. continue, break, return) associated with the first category of tokens in the loop. 
+- Step 2: Identify the nodes (e.g. while) and edges (e.g. continue, break, return) associated with the special structures in the loop. 
 We identified these structures based on their characteristics. For example: 1) The True branch of the continue node will point to the while node. 2) The True branch of the break and return nodes will jump out of the loop.
 
 - Step 3: Identify the scoping of Selection. 
