@@ -1,7 +1,7 @@
 # Flowchart2Code
 
 convert Flowchart into Pseudo-Code. Our model can:
-- Generating code containing BREAK, CONTINUE, RETURN, WHILE, IF
+- Generating code containing BREAK, CONTINUE, RETURN, WHILE, DOWHILE, IF, ELIF.
 - Support complex flowcharts, such as selection nodes with more than 2 outbound edges. 
 
 <!---
