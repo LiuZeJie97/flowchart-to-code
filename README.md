@@ -97,7 +97,7 @@ We identified these structures based on their characteristics. For example: 1) T
 - Step 3: Identify the scoping of Selection. 
 In the first step, we have found the Condition nodes related to selection. In this step, we need to find where the 2 branches of the selection meet.
 
-Step 4: Generate pseudo-code. To generate the pseudo-code, the model will rereank the nodes according to the structure of the flowchart and convert it into the pseudo-code.
+- Step 4: Generate pseudo-code. To generate the pseudo-code, the model will rereank the nodes according to the structure of the flowchart and convert it into the pseudo-code.
 
 ## Acknowledgements
 Work done under the guidance of [Lin Li]() and [Deyu Zhou](http://palm.seu.edu.cn/zhoudeyu/Home.html) during the internship in [Nanjing Origin Information Technology Company](http://www.iamqy.com/) and [PAttern Learning and Mining(PALM) Lab of Southeast University](http://palm.seu.edu.cn/). 
