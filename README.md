@@ -3,18 +3,18 @@
 convert Flowchart into Pseudo-Code. Our model can:
 - Generating code containing BREAK, CONTINUE, RETURN, WHILE, IF
 - Support complex flowcharts, such as selection nodes with more than 2 outbound edges. 
-- Easily be extened to Activity-Diagram. 
+
 <!---
 Flowcharts are special case of activity diagrams. The model will  converts the flowchart into an activity diagram when generating the code.
 -->
 
 ## Example
-### input
+### input1
 <p align="center">
 <img src="https://github.com/LiuZeJie97/flowchart-to-code/blob/master/img/FC_example_1.png" width="400"/>
 <p>
 
-### output
+### output1
 
 ```python
 def twoSum(self, nums, target):
@@ -25,17 +25,20 @@ def twoSum(self, nums, target):
         while(I is less than n?)
             if (The sum of nums[i] and nums[j] is equal to the target)
                 output:  Return their array indices
+                return
             Increment j
         Increment i
     output:  Returns an empty list
+    return
+
 ```
 
-### input
+### input2
 <p align="center">
 <img src="https://github.com/LiuZeJie97/flowchart-to-code/blob/master/img/FC_example_2.png" width="400"/>
 <p>
 
-### output
+### output2
 
 ```python
 def function():
@@ -67,14 +70,14 @@ def function():
     return
 
 ```
-## Usage
+## QuickStart
 ```cpp
 #include "AvtivityCodeGen.h"
 
 int main()
 {
-	AvtivityCodeGen cg;
-	cg.FC2Pseudocode("examples\\input.txt", "examples\\output.txt");
+    AvtivityCodeGen cg;
+    cg.FC2Pseudocode("examples\\input.txt", "examples\\output.txt");
     return 0;
 }
 ```
