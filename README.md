@@ -9,7 +9,7 @@ Flowcharts are special case of activity diagrams. The model will  converts the f
 -->
 
 ## Examples
-### input1
+### [input1](https://github.com/LiuZeJie97/flowchart-to-code/blob/master/examples/input1.txt)
 <p align="center">
 <img src="https://github.com/LiuZeJie97/flowchart-to-code/blob/master/img/FC_example_1.png" width="400"/>
 <p>
@@ -33,7 +33,7 @@ def twoSum(self, nums, target):
 
 ```
 
-### input2
+### [input2](https://github.com/LiuZeJie97/flowchart-to-code/blob/master/examples/input2.txt)
 <p align="center">
 <img src="https://github.com/LiuZeJie97/flowchart-to-code/blob/master/img/FC_example_2.png" width="400"/>
 <p>
