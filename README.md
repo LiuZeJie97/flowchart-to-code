@@ -1,6 +1,12 @@
 # Flowchart2Code
 
-convert Flowchart \ Activity-Diagram into Pseudo-Code. Our model can generating code containing BREAK, CONTINUE, RETURN.
+convert Flowchart into Pseudo-Code. Our model can:
+- Generating code containing BREAK, CONTINUE, RETURN, WHILE, IF
+- Support complex flowcharts, such as selection nodes with more than 2 outbound edges. 
+- Easily be extened to Activity-Diagram. 
+<!---
+Flowcharts are special case of activity diagrams. The model will  converts the flowchart into an activity diagram when generating the code.
+-->
 
 ## Example
 ### input
@@ -24,6 +30,43 @@ def twoSum(self, nums, target):
     output:  Returns an empty list
 ```
 
+### input
+<p align="center">
+<img src="https://github.com/LiuZeJie97/flowchart-to-code/blob/master/img/FC_example_2.png" width="400"/>
+<p>
+
+### output
+
+```python
+def function():
+    while true:
+        if (a)
+            8
+            break
+        elif (b):
+            9
+            break
+        elif (c):
+            return
+        2
+        if (e)
+            break
+        if (d):
+            4
+            continue
+        elif (g):
+            5
+        elif (f):
+            6
+        else:
+        if (h)
+            continue
+        else:
+            return
+    10
+    return
+
+```
 ## Usage
 ```cpp
 #include "AvtivityCodeGen.h"
@@ -50,9 +93,9 @@ We identified these structures based on their characteristics. For example: 1) T
 - Step 3: Determining the scoping of Selection. 
 In the first step, we have found the Condition nodes related to selection. In this step, we need to find where the 2 branches of the selection meet.
 
-## Reference
+## Acknowledgements
+Work done under the guidance of [Lin Li]() and [Deyu Zhou](http://palm.seu.edu.cn/zhoudeyu/Home.html) during the internship in [Nanjing Origin Information Technology Company](http://www.iamqy.com/) and [PAttern Learning and Mining(PALM) Lab of Southeast University](http://palm.seu.edu.cn/). 
+
+## References
 - [WANG Liming;WANG Guonü;ZHOU Mingyuan;CHU Yanli;CHEN Ke;CHEN Ping. Research on and implementation of the algorithm from the program flowchart to the code[J]. J4, 2012, 39(6): 70-77.](https://journal.xidian.edu.cn/xdxb/CN/abstract/abstract11616.shtml#1.)
 - [Zejie Liu, Xiaoyu Hu, Deyu Zhou, Lin Li, Xu Zhang, and Yanzheng Xiang. 2022. Code Generation From Flowcharts with Texts: A Benchmark Dataset and An Approach. In Findings of the Association for Computational Linguistics: EMNLP 2022, pages 6069–6077, Abu Dhabi, United Arab Emirates. Association for Computational Linguistics.](https://aclanthology.org/2022.findings-emnlp.449)
-
-## Thanks
-Work done while I was an intern at [Nanjing Origin Information Technology Company](http://www.iamqy.com/). The whole project was completed under the guidance of Lin Li(李林). 

@@ -34,22 +34,27 @@ GUID Activity::StringToGuid(string s)
     }
     GUID guid;
     int i;
-    for (i = 0; ; i++)
+    for (i = 0; i<s.size(); i++)
     {
-        if (isdigit(s[i]))
+        if (isdigit(s[i]) or s[i]=='-')
         {
             break;
         }
         guid.type += s[i];
     }
-
+    int flag = 1;
+    if (s[i] == '-')
+    {
+        flag = -1;
+        ++i;
+    }
     int j;
-    unsigned long  id = 0;
+    long  id = 0;
     for (j = i; j < s.size() ; j++)
     {
         id = id *10 + s[j] - '0';
     }
-    guid.id = to_string(id);
+    guid.id = to_string(id * flag);
     return guid;
 }
 
@@ -89,6 +94,10 @@ GUID Activity::ReadFC(string file_name) {
             }
             guid += line[div];
         }
+        if (!isdigit(guid[guid.size() - 1]))
+        {
+            guid += "-1";
+        }
         div += 2;
         for (; ; div++)
         {
@@ -99,28 +108,28 @@ GUID Activity::ReadFC(string file_name) {
             type += line[div];
         }
         GUID_FLOWCHART_TYPE[guid] = type;
-        string evo_type;
+        string activity_type;
         if (type == "start"){
-            evo_type = "InitialNode";
+            activity_type = "InitialNode";
             initial = StringToGuid(guid);
         }
         else if (type == "inputoutput") {
-            evo_type = "Action";
+            activity_type = "Action";
         }
         else if (type == "operation") {
-            evo_type = "Action";
+            activity_type = "Action";
         }
         else if (type == "condition") {
-            evo_type = "DecisionNode";
+            activity_type = "DecisionNode";
         }
         else if (type == "end") {
-            evo_type = "ActivityFinalNode";
+            activity_type = "ActivityFinalNode";
         }
         else {
             std::cout << "invalid type!" << std::endl;
             return INVALID_GUID;
         }
-        GUID_ACTIVITY_TYPE[guid] = evo_type;
+        GUID_ACTIVITY_TYPE[guid] = activity_type;
         div+=2;
         for (; div < line.size(); div++)
         {
@@ -129,9 +138,12 @@ GUID Activity::ReadFC(string file_name) {
         GUID_TEXT[guid] = text;
     }
     while (getline(myfile, line)) {
+        if (line.size() == 0)
+        {
+            break;
+        }
         string s_from = "";
         string s_to = "";
-        std::string guard = "";
         int div;
         for (div = 0;; div++)
         {
@@ -145,26 +157,30 @@ GUID Activity::ReadFC(string file_name) {
             }
             s_from += line[div];
         }
-        
-        if (line[div] == '(' &&
-            line[div + 1] == 'n' &&
-            line[div + 2] == 'o' &&
-            line[div + 3] == ')')
+        if (!isdigit(s_from[s_from.size() - 1]))
         {
-            div += 4;
+            s_from += "-1";
         }
-        else if (
-            line[div] == '(' &&
-            line[div + 1] == 'y' &&
-            line[div + 2] == 'e' &&
-            line[div + 3] == 's' &&
-            line[div + 4] == ')'
-            )
+        string guard = "";
+        if (line[div] == '(')
+        {
+            ++div;
+            while(line[div]!=')')
+            {
+                guard += line[div];
+                ++div;
+            }
+            ++div;
+        }
+        if (guard=="yes")
         {
             guard=GUID_TEXT[s_from];
-            div += 5;
         }
-        else if (
+        else if (guard == "no")
+        {
+            guard = "";
+        }
+        /*else if (
             line[div] == '(' &&
             line[div + 1] == 'l' &&
             line[div + 2] == 'e' &&
@@ -186,12 +202,18 @@ GUID Activity::ReadFC(string file_name) {
             )
         {
             div += 7;
-        }
+        }*/
         div += 2;
         
         for (;div < line.size(); div++)
         {
+            if (line[div] == ' ')
+                break;
             s_to += line[div];
+        }
+        if (!isdigit(s_to[s_to.size() - 1]))
+        {
+            s_to += "-1";
         }
         GUID from = StringToGuid(s_from);
         GUID to = StringToGuid(s_to);
@@ -203,7 +225,7 @@ GUID Activity::ReadFC(string file_name) {
         GUID_OUT_ASSO[s_from].push_back(ass);
         GUID_IN_ASSO[s_to].push_back(ass);
         if(guard != "")
-            GUID_GUARD[GuidToString(ass.m_sBasicInfo.m_sGUID)] = GUID_TEXT[s_from];
+            GUID_GUARD[GuidToString(ass.m_sBasicInfo.m_sGUID)] = guard;
     }
     return initial;
 }

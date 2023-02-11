@@ -1,0 +1,27 @@
+def function():
+    while true:
+        if (a)
+            8
+            break
+        elif (b):
+            9
+            break
+        elif (c):
+            return
+        2
+        if (e)
+            break
+        if (d):
+            4
+            continue
+        elif (g):
+            5
+        elif (f):
+            6
+        else:
+        if (h)
+            continue
+        else:
+            return
+    10
+    return

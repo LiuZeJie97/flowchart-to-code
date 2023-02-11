@@ -1,0 +1,35 @@
+st=>start: Start
+e1=>end: end
+e2=>end: end
+op2=>operation: 2
+op4=>operation: 4
+op5=>operation: 5
+op6=>operation: 6
+op8=>operation: 8
+op9=>operation: 9
+op10=>operation: 10
+cond1=>condition: 1
+cond3=>condition: 3
+cond7=>condition: 7
+
+st->cond1
+cond1->op2
+cond1(a)->op8
+cond1(b)->op9
+cond1(c)->e1
+op2->cond3
+cond3(d)->op4
+cond3(e)->op10
+cond3(g)->op5
+cond3(f)->op6
+cond3->cond7
+op4->cond1
+op5->cond7
+op6->cond7
+cond7(h)->cond1
+cond7->e2
+op8->op10
+op9->op10
+op10->e2
+
+

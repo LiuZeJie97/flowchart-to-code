@@ -37,10 +37,15 @@ void AvtivityCodeGen::CodeGenCout(std::string f_str, GUID f_sGuid, std::string f
     {
         sg_aCodeGenCoutFullGUID.push_back(f_sGuid);
     }
-    if (f_strType == "}" || f_strType == "{" || f_strType == "Return")
+    if (f_strType == "}" || f_strType == "{")
         return;
-    else if(f_strType=="Effect" || f_strType == "For" || f_strType == "While" || f_strType == "If"){
-        
+    if (f_strType == "Return")
+        f_str = "return" + f_str + "\n";
+    else if (f_strType == "Effect" || f_strType == "For" || f_strType == "While")
+    {
+    }
+    else if (f_strType == "If"){
+        f_str = "if (" + f_str + "):\n";
     }
     else if (f_strType == "Continue")
     {
@@ -56,7 +61,7 @@ void AvtivityCodeGen::CodeGenCout(std::string f_str, GUID f_sGuid, std::string f
     }
     else if (f_strType == "ElseIf")
     {
-        f_str = "elif:\n";
+        f_str = "elif ("+ f_str+"):\n";
     }
     else if (f_strType == "WHILE_TRUE")
     {
@@ -759,7 +764,7 @@ GUID AvtivityCodeGen::RecognizeIFPath(GUID f_sStartNode, std::map<std::string, i
       
         if ("ActivityFinalNode" == GetActivityType(f_sStartNode))
         {
-            CodeGenCout(sg_sReturnString+"\n", f_sStartNode, "Return");
+            CodeGenCout(sg_sReturnString, f_sStartNode, "Return");
             return CBR_NODE;
         }
 
@@ -814,7 +819,7 @@ GUID AvtivityCodeGen::RecognizeIFPath(GUID f_sStartNode, std::map<std::string, i
                 CodeGenCout(f_psEffect.m_strBody.at(0)+"\n", f_sStartNode);
             }
 
-            CodeGenCout(sg_sReturnString + "\n", f_sStartNode, "Return");
+            CodeGenCout(sg_sReturnString, f_sStartNode, "Return");
             return CBR_NODE;
 
         }
@@ -1001,7 +1006,7 @@ GUID AvtivityCodeGen::HandelIF(const GUID f_sStartNode, std::map<std::string, in
         }
         else
         {
-            CodeGenCout("else if (" + strGuard + ")", associationCBRHuiBian[i].m_sSourceGUID, "ElseIf");
+            CodeGenCout(strGuard, associationCBRHuiBian[i].m_sSourceGUID, "ElseIf");
             CodeGenCout("{\n", INVALID_GUID, "{");
         }
 
@@ -1071,7 +1076,7 @@ GUID AvtivityCodeGen::HandelIF(const GUID f_sStartNode, std::map<std::string, in
         {
             if (0 == i)
             {
-                CodeGenCout("if (" + GetGuard(association[i].m_sBasicInfo.m_sGUID) + ")\n", association[i].m_sSourceGUID,"If" );
+                CodeGenCout(GetGuard(association[i].m_sBasicInfo.m_sGUID), association[i].m_sSourceGUID,"If" );
                 CodeGenCout("{\n", INVALID_GUID, "{");
             }
             else if (association.size() - 1 == i)
@@ -1081,7 +1086,7 @@ GUID AvtivityCodeGen::HandelIF(const GUID f_sStartNode, std::map<std::string, in
             }
             else
             {
-                CodeGenCout("else if (" + GetGuard(association[i].m_sBasicInfo.m_sGUID) + ")\n", association[i].m_sSourceGUID, "ElseIf");
+                CodeGenCout(GetGuard(association[i].m_sBasicInfo.m_sGUID), association[i].m_sSourceGUID, "ElseIf");
                 CodeGenCout("{\n", INVALID_GUID, "{");
             }
             sg_iKongGe++;
@@ -1473,7 +1478,7 @@ GUID AvtivityCodeGen::HandleLoop(GUID f_sStartNode, const int f_iMapNodes, std::
                     CodeGenCout(f_psEffect.m_strBody.at(0)+"\n", f_sStartNode);
 
                 }
-                CodeGenCout(sg_sReturnString + "\n",INVALID_GUID,"Return");
+                CodeGenCout(sg_sReturnString,INVALID_GUID,"Return");
                 if (inWhile)
                 {
                     sg_iKongGe--;
@@ -1506,7 +1511,7 @@ GUID AvtivityCodeGen::HandleLoop(GUID f_sStartNode, const int f_iMapNodes, std::
                 std::vector<Association> associationList = GodeGenGetModelOutGoingAssociation(f_sStartNode);
                 if (associationList.size() == 0)
                 {
-                    CodeGenCout(sg_sReturnString + "\n", INVALID_GUID, "Return");
+                    CodeGenCout(sg_sReturnString, INVALID_GUID, "Return");
                     if (inWhile)
                     {
                         sg_iKongGe--;
@@ -1605,29 +1610,22 @@ std::vector<ActivityDiagramResult> AvtivityCodeGen::FC2Pseudocode(string f_strIn
     sg_aCodeGenCoutType.push_back("Function");
     sg_aCodeGenCoutFullGUID.push_back(initial);
     sg_iKongGe++;
-
+    GUID beginNode = initial;
     std::vector<Association> ass = GetModelOutGoingAssociation(initial);
-    if (ass.size() != 1)
+    string type = GetFlowchartType(initial);
+    if (type == "start" && ass.size() == 1)
     {
-        std::cout << "ass.size() != 1" << std::endl;
-        system("pause");
-    }
-    GUID beginNode = ass[0].m_sTargetGUID;
-    sg_aCodeGenCoutFullGUID.push_back(beginNode);
-    string type = GetFlowchartType(beginNode);
-    if (type != "inputoutput")
-    {
-        std::cout << "type!=inputoutput" << std::endl;
-        system("pause");
-    }
-    ass = GetModelOutGoingAssociation(beginNode);
-    if (ass.size() != 1)
-    {
-        std::cout << "ass.size() != 1" << std::endl;
-        system("pause");
-    }
-    beginNode = ass[0].m_sTargetGUID;
+        beginNode = ass[0].m_sTargetGUID;
+        sg_aCodeGenCoutFullGUID.push_back(beginNode);
 
+        type = GetFlowchartType(beginNode);
+        ass = GetModelOutGoingAssociation(beginNode);
+        if (type == "inputoutput" and ass.size() == 1)
+        {
+            beginNode = ass[0].m_sTargetGUID;
+        }
+    }
+    
     std::vector<std::map<std::string, int>> f_mapWhileNodesOutSideList;
     std::vector <std::string> f_aHuiDianOutSideList;
     std::map<std::string, int> emptyMap;
@@ -2015,7 +2013,7 @@ string AvtivityCodeGen::GetFunctionName()
         std::string guid = iter->first;
         std::string text = iter->second;
 
-        if (GUID_FLOWCHART_TYPE[guid] == "start")
+        if (GUID_FLOWCHART_TYPE[guid] == "start" && text.size()>=6)
         {
             functionName = text.substr(6);
         }
