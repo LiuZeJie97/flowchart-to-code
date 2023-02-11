@@ -8,7 +8,7 @@ convert Flowchart into Pseudo-Code. Our model can:
 Flowcharts are special case of activity diagrams. The model will  converts the flowchart into an activity diagram when generating the code.
 -->
 
-## Example
+## Examples
 ### input1
 <p align="center">
 <img src="https://github.com/LiuZeJie97/flowchart-to-code/blob/master/img/FC_example_1.png" width="400"/>
@@ -77,7 +77,7 @@ def function():
 int main()
 {
     AvtivityCodeGen cg;
-    cg.FC2Pseudocode("examples\\input.txt", "examples\\output.txt");
+    cg.FC2Pseudocode("examples\\input1.txt", "examples\\output1.txt");
     return 0;
 }
 ```
