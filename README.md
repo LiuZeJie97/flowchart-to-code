@@ -1,8 +1,8 @@
 # Flowchart2Code
 
 convert Flowchart into Pseudo-Code. Our model can:
-- Generating code containing BREAK, CONTINUE, RETURN, WHILE, DOWHILE, IF, ELIF.
-- Support complex flowcharts, such as selection nodes with more than 2 outbound edges. 
+- Generate code containing BREAK, CONTINUE, RETURN, WHILE, DOWHILE, IF, ELIF.
+- Support complex flowcharts, such as the selection nodes with more than 2 outgoing edges. 
 
 <!---
 Flowcharts are special case of activity diagrams. The model will  converts the flowchart into an activity diagram when generating the code.
@@ -94,8 +94,10 @@ Flowchart is a combination of two basic structures: selection and loop.
 - Step 2: Identify the nodes (e.g. while) and edges (e.g. continue, break, return) associated with the first category of tokens in the loop. 
 We identified these structures based on their characteristics. For example: 1) The True branch of the continue node will point to the while node. 2) The True branch of the break and return nodes will jump out of the loop.
 
-- Step 3: Determining the scoping of Selection. 
+- Step 3: Identify the scoping of Selection. 
 In the first step, we have found the Condition nodes related to selection. In this step, we need to find where the 2 branches of the selection meet.
+
+Step 4: Generate pseudo-code. To generate the pseudo-code, the model will rereank the nodes according to the structure of the flowchart and convert it into the pseudo-code.
 
 ## Acknowledgements
 Work done under the guidance of [Lin Li]() and [Deyu Zhou](http://palm.seu.edu.cn/zhoudeyu/Home.html) during the internship in [Nanjing Origin Information Technology Company](http://www.iamqy.com/) and [PAttern Learning and Mining(PALM) Lab of Southeast University](http://palm.seu.edu.cn/). 
