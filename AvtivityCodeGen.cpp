@@ -216,6 +216,7 @@ std::vector<Association> AvtivityCodeGen::GodeGenGetModelOutGoingAssociation(GUI
     std::vector<Association> _asso;
     unsigned int i, j, k;
     for (i = 0; i < asso.size(); i++) {
+        /*
         for (k = 0; k < sg_aDeletModel.size(); k++)
         {
             if (asso[i].m_sBasicInfo.m_sGUID == sg_aDeletModel[k])
@@ -223,7 +224,7 @@ std::vector<Association> AvtivityCodeGen::GodeGenGetModelOutGoingAssociation(GUI
                 break;
             }
         }
-
+        */
         for (j = 0; j < i; j++) {
 
             if (asso[i].m_sSourceGUID == asso[j].m_sSourceGUID
@@ -236,7 +237,8 @@ std::vector<Association> AvtivityCodeGen::GodeGenGetModelOutGoingAssociation(GUI
                 break;
             }
         }
-        if (j == i && k == sg_aDeletModel.size())
+        //if (j == i && k == sg_aDeletModel.size())
+        if (j == i)
         {
             _asso.push_back(asso[i]);
         }
@@ -251,13 +253,14 @@ std::vector<Association> AvtivityCodeGen::CodeGenGetModelInComingAssociation(GUI
     std::vector<Association> _asso;
     unsigned int i, j, k;
     for (i = 0; i < asso.size(); i++) {
+        /*
         for (k = 0; k < sg_aDeletModel.size(); k++)
         {
             if (asso[i].m_sBasicInfo.m_sGUID == sg_aDeletModel[k])
             {
                 break;
             }
-        }
+        }*/
 
         for (j = 0; j < i; j++) {
 
@@ -271,7 +274,8 @@ std::vector<Association> AvtivityCodeGen::CodeGenGetModelInComingAssociation(GUI
                 break;
             }
         }
-        if (j == i && k == sg_aDeletModel.size())
+        //if (j == i && k == sg_aDeletModel.size())
+        if (j == i)
         {
             _asso.push_back(asso[i]);
         }
@@ -1585,7 +1589,6 @@ GUID AvtivityCodeGen::HandleLoop(GUID f_sStartNode, const int f_iMapNodes, std::
     }
 }
 
-
 std::vector<ActivityDiagramResult> AvtivityCodeGen::FC2Pseudocode(string f_strInputFile, string f_strOutputFile) {
     CodeGenClear();
     GUID initial = ReadFC(f_strInputFile);
@@ -1829,8 +1832,6 @@ void AvtivityCodeGen::CodeGenClear()
     sg_mapLow.clear();
     sg_mapVisit.clear();
     sg_mapDelete.clear();
-    sg_aDeletModel.clear();
-    sg_aCreateModel.clear();
     sg_aCodeGenCoutNSpace.clear();
     sg_aCodeGenCoutGUID.clear();
     sg_aCodeGenCoutFullGUID.clear();

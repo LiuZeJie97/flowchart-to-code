@@ -65,6 +65,13 @@ std::wstring readFile(const char* filename)
 GUID Activity::ReadFC(string file_name) {
     ClearActivity();
     ifstream myfile(file_name, ios::in);
+
+    if (!myfile.is_open())
+    {
+        cout << file_name <<" do not exist!" << endl;
+        exit(-1);
+    }
+
     while (getline(myfile, line)) {
         if (line.size() == 0)
         {

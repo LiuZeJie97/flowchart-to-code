@@ -95,9 +95,7 @@ public:
 	std::map<std::string, int> sg_mapDelete;
 	std::map<std::string, int> sg_stack_map;
 	std::stack<GUID> sg_stack;
-	std::vector<GUID> sg_aDeletModel;
-	std::vector<GUID> sg_aCreateModel;
-	std::vector<int> sg_aCodeGenCoutNSpace;
+	std::vector<int> sg_aCodeGenCoutNSpace;							
 	std::vector<GUID> sg_aCodeGenCoutGUID;
 	std::vector<GUID> sg_aCodeGenCoutFullGUID;
 	std::vector<std::string> sg_aCodeGenCoutStr;
@@ -112,8 +110,6 @@ public:
 		sg_iKongGe = 0;
 	}
 
-
-
 	/********************************************************/
 	/*
 	*函数描述
@@ -127,35 +123,6 @@ public:
 	*	std::vector<ActivityDiagramResult> :	操作结果编码
 	*/
 	std::vector<ActivityDiagramResult> FC2Pseudocode(string f_strInputFile, string f_strOutputFile);
-
-	/********************************************************/
-	/*
-	*函数描述
-	*	使用活动图生成代码
-	*输入参数
-	*	f_sGUID		: 活动图的GUID
-	*	f_sFunName	: 函数的名称
-	*	f_sSavePath	: 代码保存路径
-	*输出参数
-	*
-	*返回值
-	*	std::vector<ActivityDiagramResult> :	操作结果编码
-	*/
-	//std::vector<ActivityDiagramResult> GenerateActivityCode(GUID f_sGUID, std::string f_sFunName, std::string f_sSavePath);
-
-	/********************************************************/
-	/*
-	*函数描述
-	*	检测活动图是否可以生成代码
-	*输入参数
-	*	f_sDiagramGUID		: 活动图的GUID
-	*	f_iTroubleshooting	: 是否自动修改活动图中的存在的错误
-	*输出参数
-	*	
-	*返回值
-	*	std::vector<ActivityDiagramResult> : 操作结果编码
-	*/
-	//std::vector<ActivityDiagramResult>  CheckActivity(GUID f_sDiagramGUID, bool f_iTroubleshooting = false);
 
 	/********************************************************/
 	/*
@@ -235,6 +202,18 @@ public:
 	*	GUID		: 下一个还未遍历的节点
 	*/
 
+	/********************************************************/
+	/*
+	*函数描述
+	*	输出流程图节点到控制台和文件中. 
+	*	The current output code is python, you can rewrite this function to output in other languages such as c or java. 
+	*输入参数
+	*	f_str		: 节点内的文字
+	*	f_sGuid		: 节点的id
+	* 	f_strType	: 节点的类型
+	*/
+	void CodeGenCout(std::string f_str, GUID f_sGuid = INVALID_GUID, std::string f_strType = "Effect");
+
 	void CodeGenClear();
 
 	void AddResult(int f_iErrorCode, std::vector<std::string> f_aGuid);
@@ -249,8 +228,6 @@ public:
 
 	std::vector<Association> CodeGenGetModelInComingAssociation(GUID f_sModelGUID);
 
-	void CodeGenCout(std::string f_str, GUID f_sGuid = INVALID_GUID, std::string f_strType = "Effect");
-
 	string GetFunctionName();
 
 	string GetFunctionParameters();
@@ -261,8 +238,36 @@ public:
 
 	GUID RecognizeIFPath(GUID f_sStartNode, std::map<std::string, int> f_mapNodes, std::vector<std::map<std::string, int>> f_mapWhileNodesOutSideList, std::vector<std::string> f_aHuiDianOutSideList, std::map<std::string, int>& f_mapEdges, std::map<std::string, int> f_mapVisitNodes);
 
-	std::vector<ActivityDiagramResult> _GenerateActivityCode(GUID f_sGUID, std::string f_sFunName, std::string f_sSavePath);
+	//std::vector<ActivityDiagramResult> _GenerateActivityCode(GUID f_sGUID, std::string f_sFunName, std::string f_sSavePath);
 
-	void _CheckActivity(GUID f_sStartNode, GUID f_sDiagramGUID, bool f_iTroubleshooting, std::map<std::string, int>& f_mapVisit);
+	//void _CheckActivity(GUID f_sStartNode, GUID f_sDiagramGUID, bool f_iTroubleshooting, std::map<std::string, int>& f_mapVisit);
 
+	/********************************************************/
+	/*
+	*函数描述
+	*	使用活动图生成代码
+	*输入参数
+	*	f_sGUID		: 活动图的GUID
+	*	f_sFunName	: 函数的名称
+	*	f_sSavePath	: 代码保存路径
+	*输出参数
+	*
+	*返回值
+	*	std::vector<ActivityDiagramResult> :	操作结果编码
+	*/
+	//std::vector<ActivityDiagramResult> GenerateActivityCode(GUID f_sGUID, std::string f_sFunName, std::string f_sSavePath);
+
+	/********************************************************/
+	/*
+	*函数描述
+	*	检测活动图是否可以生成代码
+	*输入参数
+	*	f_sDiagramGUID		: 活动图的GUID
+	*	f_iTroubleshooting	: 是否自动修改活动图中的存在的错误
+	*输出参数
+	*
+	*返回值
+	*	std::vector<ActivityDiagramResult> : 操作结果编码
+	*/
+	//std::vector<ActivityDiagramResult>  CheckActivity(GUID f_sDiagramGUID, bool f_iTroubleshooting = false);
 };

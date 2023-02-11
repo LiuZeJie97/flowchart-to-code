@@ -1,0 +1,30 @@
+st14469=>start: start twoSum
+io14471=>inputoutput: input: self, nums, target
+op14474=>operation: Set n to the length of the array num. 
+op14476=>operation: Set i as the index of the array, the initial value is 0
+cond14479=>condition: I is less than n?
+op14522=>operation: Define j as the subscript of the array, and the initial value of j is i+1
+cond14525=>condition: I is less than n?
+cond14545=>condition: The sum of nums[i] and nums[j] is equal to the target
+io14552=>inputoutput: output:  Return their array indices
+e14550=>end: end function return
+io14565=>inputoutput: output:  Returns an empty list
+e14563=>end: end function return
+op1=>operation: Increment i
+op2=>operation: Increment j
+
+st14469->io14471
+io14471->op14474
+op14474->op14476
+op14476->cond14479
+cond14479(yes)->op14522
+op14522->cond14525
+cond14525(yes)->cond14545
+cond14545(yes)->io14552
+io14552->e14550
+cond14479(no)->io14565
+io14565->e14563
+cond14525(no)->op1
+op1->cond14479
+cond14545(no)->op2
+op2->cond14525

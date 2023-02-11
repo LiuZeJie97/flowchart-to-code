@@ -118,7 +118,7 @@ void FC2Code2Pseudocode(string dataset_path, string output_path) {
 
 }
 
-int main() {
+int main2() {
 	string dataset_path = "D:\\FC2Code";
 	string output_path = "D:\\FC2Code";
 	FC2Code2Pseudocode(dataset_path, output_path);
