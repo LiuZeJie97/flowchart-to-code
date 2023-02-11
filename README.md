@@ -1,6 +1,6 @@
 # Flowchart2Code
 
-convert Flowchart into Pseudo-Code. Our model can:
+Convert Flowchart into Pseudo-Code. This code can:
 - Generate code containing BREAK, CONTINUE, RETURN, WHILE, DOWHILE, IF, ELIF.
 - Support complex flowcharts, such as the selection nodes with more than 2 outgoing edges. 
 
@@ -83,6 +83,8 @@ int main()
 ```
 
 ## Method
+
+[Wang et al.](https://journal.xidian.edu.cn/xdxb/CN/abstract/abstract11616.shtml#1.) proposed to generate pseudo-code from the flowchart in the following steps:
 
 <img src="https://github.com/LiuZeJie97/flowchart-to-code/blob/master/img/fc2pseudocode3.png">
 
