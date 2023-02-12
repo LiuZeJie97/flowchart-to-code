@@ -996,7 +996,7 @@ GUID AvtivityCodeGen::HandelIF(const GUID f_sStartNode, std::map<std::string, in
 
         if (0 == i)
         {
-            CodeGenCout("if (" + strGuard + ")\n", associationCBRHuiBian[i].m_sSourceGUID);
+            CodeGenCout(strGuard, associationCBRHuiBian[i].m_sSourceGUID, "If");
             CodeGenCout("{\n", INVALID_GUID, "{");
         }
         else if (associationCBRHuiBian.size() - 1 == i && "" == strGuard)

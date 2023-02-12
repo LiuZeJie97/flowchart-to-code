@@ -3,7 +3,7 @@
 int main()
 {
 	AvtivityCodeGen cg;
-	cg.FC2Pseudocode("examples\\input2.txt", "examples\\output2.txt");
+	cg.FC2Pseudocode("examples\\input1.txt", "examples\\output1.txt");
 	system("pause");
 	return 0;
 }

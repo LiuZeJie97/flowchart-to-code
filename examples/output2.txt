@@ -1,6 +1,6 @@
 def function():
     while true:
-        if (a)
+        if (a):
             8
             break
         elif (b):
@@ -9,7 +9,7 @@ def function():
         elif (c):
             return
         2
-        if (e)
+        if (e):
             break
         if (d):
             4
@@ -19,7 +19,7 @@ def function():
         elif (f):
             6
         else:
-        if (h)
+        if (h):
             continue
         else:
             return

@@ -1,7 +1,7 @@
 # Flowchart2Code
 
-Convert Flowchart into Pseudo-Code. This code can:
-- Generate code containing BREAK, CONTINUE, RETURN, WHILE, DOWHILE, IF, ELIF.
+Convert Flowchart into Pseudo-Code. This code:
+- Can generate code containing BREAK, CONTINUE, RETURN, WHILE, DOWHILE, IF, ELIF.
 - Support complex flowcharts, such as the Condition nodes with more than 2 outgoing edges. 
 
 <!---
@@ -23,14 +23,13 @@ def twoSum(self, nums, target):
     while(I is less than n?)
         Define j as the subscript of the array, and the initial value of j is i+1
         while(I is less than n?)
-            if (The sum of nums[i] and nums[j] is equal to the target)
+            if (The sum of nums[i] and nums[j] is equal to the target):
                 output:  Return their array indices
                 return
             Increment j
         Increment i
     output:  Returns an empty list
     return
-
 ```
 
 ### [input2](https://github.com/LiuZeJie97/flowchart-to-code/blob/master/examples/input2.txt)
@@ -43,7 +42,7 @@ def twoSum(self, nums, target):
 ```python
 def function():
     while true:
-        if (a)
+        if (a):
             8
             break
         elif (b):
@@ -52,7 +51,7 @@ def function():
         elif (c):
             return
         2
-        if (e)
+        if (e):
             break
         if (d):
             4
@@ -62,13 +61,12 @@ def function():
         elif (f):
             6
         else:
-        if (h)
+        if (h):
             continue
         else:
             return
     10
     return
-
 ```
 ## QuickStart
 ```cpp
@@ -84,7 +82,7 @@ int main()
 
 ## Method
 
-[Wang et al.](https://journal.xidian.edu.cn/xdxb/CN/abstract/abstract11616.shtml#1.) proposed to generate pseudo-code from the flowchart in the following steps:
+We used the method propesed by [Wang et al.](https://journal.xidian.edu.cn/xdxb/CN/abstract/abstract11616.shtml#1.) to generate pseudo-code from the flowchart:
 
 <img src="https://github.com/LiuZeJie97/flowchart-to-code/blob/master/img/fc2pseudocode3.png">
 
