@@ -41,8 +41,17 @@ void AvtivityCodeGen::CodeGenCout(std::string f_str, GUID f_sGuid, std::string f
         return;
     if (f_strType == "Return")
         f_str = "return" + f_str + "\n";
-    else if (f_strType == "Effect" || f_strType == "For" || f_strType == "While")
+    else if (f_strType == "Effect")
     {
+    }
+    else if (f_strType == "For") {
+        f_str = "For (" + f_str + "):\n";
+    }
+    else if (f_strType == "While") {
+        f_str = "While (" + f_str + "):\n";
+    }
+    else if (f_strType == "DoWhile") {
+        f_str = "While (" + f_str + ")\n";
     }
     else if (f_strType == "If"){
         f_str = "if (" + f_str + "):\n";
@@ -1137,11 +1146,11 @@ GUID AvtivityCodeGen::HandelIF(const GUID f_sStartNode, std::map<std::string, in
         {
             sg_iKongGe--;
             CodeGenCout("}", INVALID_GUID, "}");
-            CodeGenCout("while(" + strGuard + ");\n", guardGuid,"While");
+            CodeGenCout(strGuard, guardGuid,"DoWhile");
         }
         else if (EVO_CODEGEN_WHILE == f_mapNodes[GuidToString(f_sStartNode)])
         {
-            CodeGenCout("while(" + strGuard + ")\n", guardGuid, "While");
+            CodeGenCout(strGuard, guardGuid, "While");
             CodeGenCout("{\n", INVALID_GUID, "{");
             sg_iKongGe++;
         }

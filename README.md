@@ -20,9 +20,9 @@ Flowcharts are special case of activity diagrams. The model will  converts the f
 def twoSum(self, nums, target):
     Set n to the length of the array num. 
     Set i as the index of the array, the initial value is 0
-    while(I is less than n?)
+    While (I is less than n?):
         Define j as the subscript of the array, and the initial value of j is i+1
-        while(I is less than n?)
+        While (I is less than n?):
             if (The sum of nums[i] and nums[j] is equal to the target):
                 output:  Return their array indices
                 return
